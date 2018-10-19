@@ -50,7 +50,6 @@ angular.module('kityminderEditor')
             $scope.data.title = targetImg.attr('alt');
         };
 
-        // 自动上传图片，后端需要直接返回图片 URL
         $scope.uploadImage = function() {
             var fileInput = $('#upload-image');
             if (!fileInput.val()) {
@@ -58,16 +57,17 @@ angular.module('kityminderEditor')
             }
             if (/^.*\.(jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)$/.test(fileInput.val())) {
                 var file = fileInput[0].files[0];
-                return server.uploadImage(file).then(function (json) {
-                    var resp = json.data;
-                    if (resp.errno === 0) {
-                        $scope.data.url = resp.data.url;
-                    }
-                });
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $scope.data.url = this.result;
+                    $scope.$apply();
+                };
+                reader.readAsDataURL(file);
             } else {
                 alert("后缀只能是 jpg、gif 及 png");
             }
         };
+
 
         $scope.shortCut = function(e) {
             e.stopPropagation();
