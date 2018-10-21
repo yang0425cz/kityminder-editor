@@ -5,7 +5,7 @@ angular.module('kityminderEditor')
             list: [],
             url: image.url || '',
             title: image.title || '',
-            R_URL: /^https?\:\/\/\w+/
+            R_URL: /^(http|https|data)?:\w+/
         };
 
         setTimeout(function() {

@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * kityminder-editor - v1.0.64 - 2018-10-19
+ * kityminder-editor - v1.0.64 - 2018-10-21
  * https://github.com/fex-team/kityminder-editor
  * GitHub: git+https://github.com/fex-team/kityminder-editor.git 
  * Copyright (c) 2018 ; Licensed 
@@ -3163,7 +3163,7 @@ angular.module('kityminderEditor')
             list: [],
             url: image.url || '',
             title: image.title || '',
-            R_URL: /^https?\:\/\/\w+/
+            R_URL: /^(http|https|data)?:\w+/
         };
 
         setTimeout(function() {
